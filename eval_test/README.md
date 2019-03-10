@@ -11,6 +11,7 @@ eval_test/
 |-- library.py
 |-- awake_gsoc_eval.ipynb
 |-- README.md
+|-- requirements.txt
 
 ```
 ## `library.py`
@@ -38,4 +39,3 @@ Contains the `.h5` file.
 
 ## `out/`
 Contains the output files: `csv` and `png`.
- 

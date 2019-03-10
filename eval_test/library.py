@@ -10,14 +10,25 @@ import matplotlib.pyplot as plt
 
 
 def file2utc(filepath):
+    """
+    Converts the first 19 digits of the hdf filename (filepath) to UNIX time
+    and returns the UTC timestamps.
+    """
     filename = (filepath.split('/')[-1])[0:19]
     time_ns = float(filename)/(10**9)
     return pytz.utc.localize(datetime.fromtimestamp(time_ns))
 
 def utc2cern(timestamp_utc):
+    """
+    Converts the UTC timestamp (timestamp_utc) to CERN's local timestamp.
+    """
     return timestamp_utc.astimezone(pytz.timezone('Europe/Zurich'))
 
 def hdf2csv(filepath, output):
+    """
+    Reads the hdf file at filepath and stores its csv details equivalent at
+    the output directory
+    """
     output_path = output+ ((filepath.split('/')[-1]).split('.'))[0] +'.csv'
     input_file = h5py.File(filepath, 'r')
 
@@ -40,6 +51,9 @@ def hdf2csv(filepath, output):
 
 
 def plot_image(im_data, dimensions, im_title= None, output_path= None):
+    """
+    Plots a 2D matrix as an image as saves it at output path.
+    """
     fig = plt.figure(figsize = dimensions)
 
     ax = fig.add_subplot(111)
@@ -55,6 +69,10 @@ def plot_image(im_data, dimensions, im_title= None, output_path= None):
         plt.savefig(output_path, bbox_inches='tight')
 
 def linear2matrix(hdf_path, image_path, output):
+    """
+    Converts the linear data in the image dataset to its 2D equivalent
+    and saves it as an image.
+    """
     input_file= h5py.File(hdf_path, 'r')
     output_path = output + ((hdf_path.split('/')[-1]).split('.'))[0] + '_' + image_path.split('/')[-2] + '.png'
 
