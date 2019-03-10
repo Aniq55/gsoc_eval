@@ -66,17 +66,3 @@ def linear2matrix(hdf_path, image_path, output):
     filtered_img = medfilt(reshaped_data)
 
     plot_image(filtered_img, (h/100.0, w/100.0), image_path, output_path)
-
-
-# Task 1
-timestamp_utc = file2utc('./1541962108935000000_167_838.h5')
-timestamp_cern = utc2cern(timestamp_utc)
-
-print(timestamp_utc)
-print(timestamp_cern)
-
-# Task 2
-hdf2csv('./data/1541962108935000000_167_838.h5', './out/')
-
-# Task 3
-linear2matrix('./data/1541962108935000000_167_838.h5', '/AwakeEventData/XMPP-STREAK/StreakImage/', './out/')
